@@ -1,0 +1,23 @@
+# docker-compose.yml
+version: '3.7'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py  # Optional: Set environment variables if needed
+    command: ["python", "reflex_app.py"]
+    restart: always  # Optional: Restart the service always
+  version: "3.8"
+
+  my-postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: your_password
+    ports:
+      - "5432:5432"
+networks:
+  default:
+    name: reflex-network
